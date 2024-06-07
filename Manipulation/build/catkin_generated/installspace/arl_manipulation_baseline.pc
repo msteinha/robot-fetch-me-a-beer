@@ -1,0 +1,8 @@
+prefix=/home/user/exchange/Manipulation/install
+
+Name: arl_manipulation_baseline
+Description: Description of arl_manipulation_baseline
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: rospy std_msgs geometry_msgs

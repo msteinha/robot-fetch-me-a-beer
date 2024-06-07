@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<launch>
+    <node name="publish_pose_EE" pkg="arl_manipulation_baseline" type="publish_pose_from_tf.py" required="true" output="screen">
+        <param name="base_frame" value="base_footprint" />
+        <param name="pose_frame" value="arm_right_tool_link" />
+    </node>
+
+    <node name="publish_pose_grasp" pkg="arl_manipulation_baseline" type="publish_pose_from_tf.py" required="true" output="screen">
+        <param name="base_frame" value="base_footprint" />
+        <param name="pose_frame" value="gripper_right_grasping_frame" />
+    </node>
+
+    <node pkg="rosbag" type="record" name="rosbag_record" required="true"
+        args="record -o $(find arl_manipulation_baseline)/data/
+        /gazebo/model_states
+        /arm_right_tool_link_pose
+        /gripper_right_grasping_frame_pose
+        /parallel_gripper_right/is_grasped
+        /table_camera/image_raw/compressed
+        " />
+</launch>

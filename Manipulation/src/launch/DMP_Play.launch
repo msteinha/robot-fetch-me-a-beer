@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+	<!-- Arguments -->
+	<arg name="record" default="false" />
+	<arg name="motion" default="place" />
+
+	<!-- Run teleop script -->
+	<node name="dmp_play" pkg="arl_manipulation_baseline" type="dmp_play.py" output="screen" required="true" >
+		<param name="motion" value="$(arg motion)"/>
+	</node>
+
+	<!-- Record rosbag -->
+	<group if="$(arg record)">
+		<include file="$(find arl_manipulation_baseline)/launch/record.launch"/>
+	</group>
+
+</launch>
